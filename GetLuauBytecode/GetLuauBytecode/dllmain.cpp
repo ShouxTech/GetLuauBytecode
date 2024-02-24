@@ -45,7 +45,7 @@ LONG WINAPI exceptionHandler(EXCEPTION_POINTERS* exceptionInfo) {
         }*/
         *reinterpret_cast<std::uintptr_t*>(exceptionInfo->ContextRecord->Rsp + 8) = exceptionInfo->ContextRecord->Rcx; // This is the original instruction that was replaced with 0xCC's.
 
-        exceptionInfo->ContextRecord->Rip = deserializeAddress + OVERWRITE_INSTR_SIZE; // The mov instructed that was replaced was OVERWRITE_INSTR_SIZE bytes so we have to skip it to jump over the 0xCC's.
+        exceptionInfo->ContextRecord->Rip = deserializeAddress + OVERWRITE_INSTR_SIZE; // The mov instruction that was replaced was OVERWRITE_INSTR_SIZE bytes so we have to skip it to jump over the 0xCC's.
         return EXCEPTION_CONTINUE_EXECUTION;
     }
 
